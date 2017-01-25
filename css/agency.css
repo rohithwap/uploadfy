@@ -835,8 +835,8 @@ textarea:focus, input:focus{
     margin: 0px auto;
     padding: 10px;
     position: absolute;
-    bottom: 60px;
-    left: 115px;
+    bottom: 25px;
+    left: 10px;
 	cursor: pointer;
 	display: none;
 	background: #2196f3;
@@ -847,8 +847,8 @@ textarea:focus, input:focus{
     margin: 0px auto;
     padding: 10px;
     position: absolute;
-    bottom: 60px;
-    left: 295px;
+    bottom: 25px;
+    right: 10px;
 	cursor: pointer;
 	display: none;
 	border: 1px solid #FFF;
@@ -863,6 +863,7 @@ output{
 	width: 100%;
     background: #1a81d2;
     height: 85px;
+	position: relative;
 }
 
 .scroll::-webkit-scrollbar {
