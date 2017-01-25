@@ -76,6 +76,7 @@
 					<label for="files" class="custom-file-upload files">
     					<img class="up" src="img/cloud.png">
 					</label>	
+					<div class="shadow"></div>	
 					<input type="file" id="files" name="files[]" multiple class="input-form" />
 					<output id="list" class="scroll"></output>						
 					
@@ -180,7 +181,7 @@ $('.next').on('click',function(){
 	var semail = $('#semail').val();
 	if(name && remail && semail){
 		$('#info').slideToggle('fast');
-		$('.files').css({'margin-top':'10%'});
+		$('.files').css({'margin-top':'5%'});
 		$('.back').css({'display':'block'});
 	}else{
 		alert('Please fill in the form fields')
@@ -206,7 +207,7 @@ var files = evt.target.files; // FileList object
 // files is a FileList of File objects. List some properties.
 var output = [];
 for (var i = 0, f; f = files[i]; i++) {
-output.push('<tr><td style="background: #f1f1f1;padding: 5px;"><strong>', escape(f.name),'</td><td style="background: #1a81d2;    color: #FFF; width:80px; text-align: center;">',(f.size/1000000).toFixed(2), ' MB</strong></td></tr><tr style="    height: 5px;"></tr>');
+output.push('<tr><td style="background: #f1f1f1;padding: 5px;"><strong>', escape(f.name),'</td><td style="background: #63cc4a;    color: #FFF; width:80px; text-align: center;">',(f.size/1000000).toFixed(2), ' MB</strong></td></tr><tr style="    height: 5px;"></tr>');
 }
 document.getElementById('list').innerHTML = '<table cellspacing="10" class="liste output-table">' + output.join('') + '</table>';
 	

@@ -864,8 +864,15 @@ output{
 .form-bottom{
 	width: 100%;
     background: #1a81d2;
-    height: 85px;
+    height: 90px;
 	position: relative;
+}
+.shadow{
+	width: 100%;
+    box-shadow: 0px 4px 12px #000;
+    height: 1px;
+    margin: 0px auto;
+    margin-top: 10px;
 }
 
 .scroll::-webkit-scrollbar {
