@@ -65,7 +65,7 @@
             <div class="intro-text">
                 <div class="zone">
 					<div class="box-head">Add Details</div>
-					<form id="uploader">
+					<form id="uploader" action="upload.php" method="post" novalidate>
 					<div id="info">						
 					<input type="text" name="rname" placeholder="Recipient Name" id="rname" class="input-form input-first" value="">
 					<input type="email" name="remail" id="remail" placeholder="Recipient Email" class="input-form" value="">
@@ -81,7 +81,7 @@
 					
 					<div class="form-bottom">
 						<div class="back">Back</div>
-						<div id="submit">Upload</div>
+						<input type="submit" id="submit" value="Upload">
 					</div>
 					</form>
 				</div>	
@@ -191,12 +191,15 @@ $('.back').on('click',function(){
 	$('#info').slideToggle('fast');
 	$('.files').css({'margin-top':'40%'});
 	$('.back').css({'display':'none'});
-	// $('#submit').css({'display':'none'});
+})
+
+$('.files').on('click',function(){	
+	$('#submit').css({'display':'none'});
 })
 
 function handleFileSelect(evt) {
 
-$('#submit').css({'display':'block'});	
+	
 	
 var files = evt.target.files; // FileList object
 
@@ -206,7 +209,11 @@ for (var i = 0, f; f = files[i]; i++) {
 output.push('<tr><td style="background: #f1f1f1;padding: 5px;"><strong>', escape(f.name),'</td><td style="background: #1a81d2;    color: #FFF; width:80px; text-align: center;">',(f.size/1000000).toFixed(2), ' MB</strong></td></tr><tr style="    height: 5px;"></tr>');
 }
 document.getElementById('list').innerHTML = '<table cellspacing="10" class="liste output-table">' + output.join('') + '</table>';
-
+	
+	if(files.length > 0){
+		$('#submit').css({'display':'block'});
+	}
+	
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);

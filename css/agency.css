@@ -852,12 +852,14 @@ textarea:focus, input:focus{
 	cursor: pointer;
 	display: none;
 	border: 1px solid #FFF;
+	background: none;
 }
 output{
 	height: 210px;
     overflow-y: scroll;
     width: 98.5%;
     margin-bottom: 15px;
+	background: #FFF;
 }
 .form-bottom{
 	width: 100%;
