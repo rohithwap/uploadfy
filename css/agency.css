@@ -807,7 +807,7 @@ textarea:focus, input:focus{
 }
 #uploader{
 	background: #FFF;
-	height: 330px;
+	height: 350px;
 }
 .files{
 	margin-top: 40%;
@@ -857,12 +857,12 @@ output{
 	height: 210px;
     overflow-y: scroll;
     width: 98.5%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .form-bottom{
 	width: 100%;
     background: #1a81d2;
-    height: 80px;
+    height: 85px;
 }
 
 .scroll::-webkit-scrollbar {

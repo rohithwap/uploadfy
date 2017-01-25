@@ -67,9 +67,9 @@
 					<div class="box-head">Add Details</div>
 					<form id="uploader">
 					<div id="info">						
-					<input type="text" name="Name" placeholder="Recipient Name" class="input-form input-first">
-					<input type="email" name="emailr" placeholder="Recipient Email" class="input-form">
-					<input type="email" name="emails" placeholder="Your Email" class="input-form">	
+					<input type="text" name="rname" placeholder="Recipient Name" id="rname" class="input-form input-first" value="">
+					<input type="email" name="remail" id="remail" placeholder="Recipient Email" class="input-form" value="">
+					<input type="email" name="semail" id="semail" placeholder="Your Email" class="input-form" value="">	
 					<textarea type="text-box" name="message" placeholder="message"  class="input-form"></textarea>
 					<div class="next">Next</div>
 					</div>	
@@ -81,7 +81,7 @@
 					
 					<div class="form-bottom">
 						<div class="back">Back</div>
-						<div id="submit">Submit</div>
+						<div id="submit">Upload</div>
 					</div>
 					</form>
 				</div>	
@@ -173,31 +173,46 @@
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
 	
-<script>
-	
+<script>	
 $('.next').on('click',function(){
-	$('#info').slideToggle('fast');
-	$('.files').css({'margin-top':'10%'});
-	$('.back').css({'display':'block'});
+	var name = $('#rname').val();
+	var remail = $('#remail').val();
+	var semail = $('#semail').val();
+	if(name && remail && semail){
+		$('#info').slideToggle('fast');
+		$('.files').css({'margin-top':'10%'});
+		$('.back').css({'display':'block'});
+	}else{
+		alert('Please fill in the form fields')
+	}
+	
 })
 $('.back').on('click',function(){
 	$('#info').slideToggle('fast');
 	$('.files').css({'margin-top':'40%'});
 	$('.back').css({'display':'none'});
+	$('#submit').css({'display':'none'});
 })
 
 function handleFileSelect(evt) {
+
+$('#submit').css({'display':'block'});	
+	
 var files = evt.target.files; // FileList object
 
 // files is a FileList of File objects. List some properties.
 var output = [];
 for (var i = 0, f; f = files[i]; i++) {
-output.push('<tr><td style="background: #e8e8e8;padding: 5px;"><strong>', escape(f.name),'</td><td style="background: #1a81d2;    color: #FFF;">',(f.size/1000000).toFixed(2), ' MB</strong></td></tr>');
+output.push('<tr><td style="background: #f1f1f1;padding: 5px;"><strong>', escape(f.name),'</td><td style="background: #1a81d2;    color: #FFF; width:80px; text-align: center;">',(f.size/1000000).toFixed(2), ' MB</strong></td></tr><tr style="    height: 5px;"></tr>');
 }
 document.getElementById('list').innerHTML = '<table cellspacing="10" class="liste output-table">' + output.join('') + '</table>';
+
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+	
+	
 </script>
 	
 
