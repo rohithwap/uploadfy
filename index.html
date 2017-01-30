@@ -65,6 +65,8 @@
             <div class="intro-text">
                 <div class="zone">
 					<div class="box-head">Add Details</div>
+					<div id="box-inner">
+					<div id="results"><div class="bar"></div></div>	
 					<form id="uploader" action="http://localhost/uploadfy/upload.php" method="post" novalidate>
 					<div id="info">						
 					<input type="text" name="rname" placeholder="Recipient Name" id="rname" class="input-form input-first" value="">
@@ -77,7 +79,7 @@
     					<img class="up" src="img/add.png">
 					</label>	
 					<div class="shadow"></div>	
-					<input type="file" id="files" name="upload[]" multiple class="input-form" enctype="multipart/form-data" />
+					<input type="file" id="files" name="file[]" multiple class="input-form" enctype="multipart/form-data" />
 					<output id="list" class="scroll"></output>						
 					
 					<div class="form-bottom">
@@ -85,6 +87,7 @@
 						<input type="submit" id="submit" value="Upload">
 					</div>
 					</form>
+					</div>	
 				</div>	
             </div>
         </div>
@@ -219,7 +222,37 @@ document.getElementById('list').innerHTML = '<table cellspacing="10" class="list
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
-	
+$('body').on('click', '#submit', function(e){
+        e.preventDefault();
+        var formData = new FormData($(this).parents('form')[0]);
+
+        $.ajax({
+            url: 'upload.php',
+            type: 'POST',
+			data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                return myXhr;
+            },
+			beforeSend:function(x){
+				$('.bar').css({'display':'block'})
+				$('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
+			},
+            success: function (data) {
+				$('#uploader').css({'display': 'none',});
+                $('#results').append(data);
+				$('#bar').val(100);
+            },
+			complete:function(){
+            	
+        	}
+            
+        });
+        return false;
+});	
 	
 </script>
 	
