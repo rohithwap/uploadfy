@@ -813,11 +813,15 @@ textarea:focus, input:focus{
 	margin-top: 40%;
 }
 .up{
-	width: 30%;
+	width: 50%;
     cursor: pointer;
     border-radius: 100%;
     background: #1a81d2;
     padding: 20px;
+    transition-duration: .5s;
+}
+.up:hover{
+	transform: scale(.8);	
 }
 .liste{
 	color: #757575;
@@ -828,6 +832,7 @@ textarea:focus, input:focus{
 .output-table{
 	width: 95%;
     margin: 0px auto;
+	table-layout: fixed;
 }
 .back{
 	font-weight: bold;    
@@ -855,11 +860,12 @@ textarea:focus, input:focus{
 	background: none;
 }
 output{
-	height: 210px;
+	height: 240px;
     overflow-y: scroll;
     width: 98.5%;
     margin-bottom: 15px;
 	background: #FFF;
+	overflow-x: hidden;
 }
 .form-bottom{
 	width: 100%;
