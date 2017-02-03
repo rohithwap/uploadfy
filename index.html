@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>-::-Uploadify-::-</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -68,23 +68,24 @@
 					<div id="box-inner">
 						<div id="results">
 							<div class="percentage"><span id="pc"></span>%</div>
+							<div id="container"></div>
 						<div class="bar"></div>
 							<div class="success"></div>	
 						</div>	
 					</div>	
 					<form id="uploader" action="http://localhost/uploadfy/upload.php" method="post" novalidate>
-					<div id="info">						
-					<input type="text" name="rname" placeholder="Recipient Name" id="rname" class="input-form input-first" value="">
-					<input type="email" name="remail" id="remail" placeholder="Recipient Email" class="input-form" value="">
+					<div id="info">
+					<input type="email" name="remail" id="remail" placeholder="Email To" class="input-form" value="">
 					<input type="email" name="semail" id="semail" placeholder="Your Email" class="input-form" value="">	
-					<textarea type="text-box" name="message" placeholder="message"  class="input-form"></textarea>
+					<textarea type="text-box" name="message" placeholder="Message"  class="input-form"></textarea>
 					<div class="next">Next</div>
 					</div>	
 					<label for="files" class="custom-file-upload files">
     					<img class="up" src="img/add.png">
 					</label>	
 					<div class="shadow"></div>	
-					<input type="file" id="files" name="file[]" multiple class="input-form" enctype="multipart/form-data" />
+					<input type="file" id="files" name="file[]" multiple class="input-form" enctype="multipart/form-data" 
+					accept=".ai,.cdr,.pdf,.tiff,.jpg,.eps,.zip,.rar" />
 					<output id="list" class="scroll"></output>						
 					
 					<div class="form-bottom">
@@ -94,8 +95,7 @@
 					</form>
 					</div>	
 				</div>	
-            </div>
-        </div>
+            </div>        
     </header>
 
     
@@ -178,7 +178,10 @@
     <!-- Contact Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
-
+	
+	<!-- Progress Bar -->
+    <script src="js/progressbar.min.js"></script>
+	
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
 	
@@ -187,10 +190,11 @@ $('.next').on('click',function(){
 	var name = $('#rname').val();
 	var remail = $('#remail').val();
 	var semail = $('#semail').val();
-	if(name && remail && semail){
+	if(remail && semail){
 		$('#info').slideToggle('fast');
 		$('.files').css({'margin-top':'5%'});
 		$('.back').css({'display':'block'});
+		$('.box-head').text('Add Files');
 	}else{
 		alert('Please fill in the form fields')
 	}
@@ -200,6 +204,7 @@ $('.back').on('click',function(){
 	$('#info').slideToggle('fast');
 	$('.files').css({'margin-top':'40%'});
 	$('.back').css({'display':'none'});
+	$('.box-head').text('Add Details');
 })
 
 $('.files').on('click',function(){	
@@ -231,6 +236,9 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 
 $('body').on('click', '#submit', function(e){
         e.preventDefault();
+	
+		$('.box-head').text('Uploading');
+	
         var formData = new FormData($(this).parents('form')[0]);
 
         $.ajax({
@@ -245,30 +253,73 @@ $('body').on('click', '#submit', function(e){
 					myXhr.upload.onprogress = function (e) {
             		// For uploads
             		if (e.lengthComputable) {
-                	var pc = Math.round( (e.loaded / e.total)*100);
+                	pc = Math.round( (e.loaded / e.total)*100);
 					$('#pc').text(pc);
 					$('#bar').val(pc);	
+					//
+					bar.animate(Math.round( (e.loaded / e.total)), {
+						
+					}, function() {
+						console.log ('Upload Complete');
+					});
+					//
             		}
         		};
                 return myXhr;
             },
 			beforeSend:function(x){
 				$('#uploader').css({'display': 'none',});
-				$('.bar').css({'display':'block'})
-				$('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
-				$('.percentage').css({'display':'block'})
+				// $('.bar').css({'display':'block'})
+				// $('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
+				// $('.percentage').css({'display':'block'})
+				$('#container').css({'display':'block'})
 			},
-            success: function (data) {				
+            success: function (data) {	
+				$('.box-head').text('Upload Complete!');
+				$('.success').css({'display': 'block',});
                 $('.success').append(data);
-				$('#bar').val(100);
+				// $('#bar').val(100);
+				
             },
 			complete:function(){
-            	
+            	$('#container').css({'display':'none'})
+				
         	}
             
         });
         return false;
 });	
+	
+// New Progress Par
+  var bar = new ProgressBar.Circle(container, {
+  color: '#FFF',
+  // This has to be the same size as the maximum width to
+  // prevent clipping
+  strokeWidth: 4,
+  trailWidth: 1,
+  easing: 'linear',
+  //duration: 10,
+  text: {
+    autoStyleContainer: false
+  },
+  from: { color: '#125992', width: 4 },
+  to: { color: '#FFF', width: 4 },
+  // Set default step function for all animate calls
+  step: function(state, circle) {
+    circle.path.setAttribute('stroke', state.color);
+    circle.path.setAttribute('stroke-width', state.width);
+
+    var value = pc;
+    if (value === 0) {
+      circle.setText('');
+    } else {
+      circle.setText(value +'%');
+    }
+
+  }
+});
+bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+bar.text.style.fontSize = '6rem';
 	
 </script>
 	

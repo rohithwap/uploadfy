@@ -895,9 +895,11 @@ output{
 }
 .upload-item{
 	background: #fff;
-    padding: 10px;
+    padding: 5px;
     color: #a0a0a0;
-    border-bottom: 5px solid #1d73b7;
+    border-bottom: 1px solid #dadada;
+    margin: 10px;
+    text-align: left;
 }
 #bar{
 	background: #e42c88;
@@ -915,4 +917,34 @@ output{
 .percentage{
 	font-size: 70px;
 	display: none;
+}
+.success{
+	height: 350px;
+    background: #FFF;
+	overflow-x: hidden;
+    overflow-y: scroll;
+	display: none;
+}
+.success::-webkit-scrollbar {
+    width: 5px;
+}
+
+.success::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 5px 0 0px rgba(0,0,0,0);
+    
+}
+
+.success::-webkit-scrollbar-thumb {    
+    -webkit-box-shadow: inset 5px 5px 0px #FFEB3B; 
+}
+
+/* NEW PROGRESS BAR */
+#container {
+margin: 0px auto;
+width: 200px;
+height: 200px;
+position: relative;
+margin-top: 30%;
+margin-bottom: 10px;
+display: none;
 }
