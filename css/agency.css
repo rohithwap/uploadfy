@@ -945,6 +945,10 @@ output{
     color: #2196f3;
 	cursor: pointer;
 }
+#another:hover{
+	background: #2196f3;
+	color: #FFF;
+}
 
 /* NEW PROGRESS BAR */
 #container {

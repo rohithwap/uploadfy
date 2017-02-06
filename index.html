@@ -186,7 +186,7 @@
     <script src="js/agency.min.js"></script>
 	
 <script>	
-$('.next').on('click',function(){
+$('.zone').on('click','.next',function(){
 	var name = $('#rname').val();
 	var remail = $('#remail').val();
 	var semail = $('#semail').val();
@@ -200,16 +200,20 @@ $('.next').on('click',function(){
 	}
 	
 })
-$('.back').on('click',function(){
+$('.zone').on('click','.back',function(){
 	$('#info').slideToggle('fast');
 	$('.files').css({'margin-top':'40%'});
 	$('.back').css({'display':'none'});
 	$('.box-head').text('Add Details');
 })
 
-$('.files').on('click',function(){	
+$('.zone').on('click','.files',function(){	
 	$('#submit').css({'display':'none'});
 })
+
+$('.success').on('click','#another',function(){	
+	location.reload();
+});
 
 function handleFileSelect(evt) {
 
@@ -255,14 +259,7 @@ $('body').on('click', '#submit', function(e){
             		if (e.lengthComputable) {
                 	pc = Math.round( (e.loaded / e.total)*100);
 					$('#pc').text(pc);
-					$('#bar').val(pc);	
-					//
-					bar.animate(Math.round( (e.loaded / e.total)), {
-						
-					}, function() {
-						console.log ('Upload Complete');
-					});
-					//
+					$('#bar').val(pc);
             		}
         		};				
                 return myXhr;
@@ -282,48 +279,14 @@ $('body').on('click', '#submit', function(e){
 				$('.success').append('<div id="another">Upload Another</div>');
             },
 			complete:function(){
-            	$('#container').css({'display':'none'})
-				
+            	$('#container').css({'display':'none'})				
         	}
             
         });
         return false;
 });	
 	
-// New Progress Par
-  var bar = new ProgressBar.Circle(container, {
-  color: '#FFF',
-  // This has to be the same size as the maximum width to
-  // prevent clipping
-  strokeWidth: 4,
-  trailWidth: 1,
-  easing: 'linear',
-  //duration: 10,
-  text: {
-    autoStyleContainer: false
-  },
-  from: { color: '#125992', width: 4 },
-  to: { color: '#FFF', width: 4 },
-  // Set default step function for all animate calls
-  step: function(state, circle) {
-    circle.path.setAttribute('stroke', state.color);
-    circle.path.setAttribute('stroke-width', state.width);
-
-    var value = pc;
-    if (value === 0) {
-      circle.setText('');
-    } else {
-      circle.setText(value +'%');
-    }
-
-  }
-});
-bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-bar.text.style.fontSize = '6rem';	
 	
-$('.success').on('click','#another',function(){	
-	location.reload();
-});	
 
 	
 </script>
