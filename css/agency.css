@@ -891,7 +891,7 @@ output{
 }
 
 .scroll::-webkit-scrollbar-thumb {    
-    -webkit-box-shadow: inset 5px 5px 0px #2196f3; 
+    -webkit-box-shadow: inset 5px 5px 0px #000; 
 }
 .upload-item{
 	background: #fff;
@@ -910,16 +910,14 @@ output{
 	background: #fff;
     padding: 20px;
     margin: 0px auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-	display:none;
+    display:none;
 }
 .percentage{
 	font-size: 70px;
 	display: none;
 }
 .success{
-	height: 350px;
+	height: 230px;
     background: #FFF;
 	overflow-x: hidden;
     overflow-y: scroll;
@@ -933,9 +931,19 @@ output{
     -webkit-box-shadow: inset 5px 0 0px rgba(0,0,0,0);
     
 }
-
 .success::-webkit-scrollbar-thumb {    
-    -webkit-box-shadow: inset 5px 5px 0px #FFEB3B; 
+    -webkit-box-shadow: inset 5px 5px 0px #000; 
+}
+#another{
+	text-align: center;
+    padding: 20px 15px;
+    width: 150px;
+    margin: 0px auto;
+    margin-top: 40px;
+	margin-bottom: 40px;
+    border: 2px solid #2196f3;
+    color: #2196f3;
+	cursor: pointer;
 }
 
 /* NEW PROGRESS BAR */

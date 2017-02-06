@@ -273,13 +273,13 @@ $('body').on('click', '#submit', function(e){
 				$('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
 				$('.percentage').css({'display':'block'})
 				//$('#container').css({'display':'block'})
-			},
+			},			
             success: function (data) {	
 				$('.box-head').text('Upload Complete!');
 				$('.success').css({'display': 'block',});
-                $('.success').append(data);
 				$('#bar').val(100);
-				
+				$('.success').append(data);
+				$('.success').append('<div id="another">Upload Another</div>');
             },
 			complete:function(){
             	$('#container').css({'display':'none'})
@@ -320,6 +320,10 @@ $('body').on('click', '#submit', function(e){
 });
 bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
 bar.text.style.fontSize = '6rem';	
+	
+$('.success').on('click','#another',function(){	
+	location.reload();
+});	
 
 	
 </script>
