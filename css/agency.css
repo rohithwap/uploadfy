@@ -915,6 +915,10 @@ output{
 .percentage{
 	font-size: 70px;
 	display: none;
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 36%;
 }
 .success{
 	height: 230px;
@@ -949,6 +953,11 @@ output{
 	background: #2196f3;
 	color: #FFF;
 }
+#results{
+	display: none;
+	position: relative;
+    min-height: 30em;
+}
 
 /* NEW PROGRESS BAR */
 #container {
@@ -959,4 +968,52 @@ position: relative;
 margin-top: 30%;
 margin-bottom: 10px;
 display: none;
+}
+
+/* Circle CSS Loader */
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 25em;
+  height: 25em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+   position: absolute;
+	top: 5%;
+   left: 0;
+   right: 0;	
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

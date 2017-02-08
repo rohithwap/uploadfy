@@ -67,6 +67,7 @@
 					<div class="box-head">Add Details</div>
 					<div id="box-inner">
 						<div id="results">
+							<div class="loader"></div>
 							<div class="percentage"><span id="pc"></span>%</div>
 							<div id="container"></div>
 						<div class="bar"></div>
@@ -242,6 +243,7 @@ $('body').on('click', '#submit', function(e){
         e.preventDefault();
 	
 		$('.box-head').text('Uploading');
+		$('#results').fadeIn();
 	
         var formData = new FormData($(this).parents('form')[0]);
 
@@ -259,24 +261,26 @@ $('body').on('click', '#submit', function(e){
             		if (e.lengthComputable) {
                 	pc = Math.round( (e.loaded / e.total)*100);
 					$('#pc').text(pc);
-					$('#bar').val(pc);
+					//$('#bar').val(pc);
             		}
         		};				
                 return myXhr;
             },
 			beforeSend:function(x){
 				$('#uploader').css({'display': 'none',});
-				$('.bar').css({'display':'block'})
-				$('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
+				//$('.bar').css({'display':'block'})
+				//$('.bar').html("<progress id='bar' value='0' max='100'></progress").show();
 				$('.percentage').css({'display':'block'})
 				//$('#container').css({'display':'block'})
 			},			
             success: function (data) {	
-				$('.box-head').text('Upload Complete!');
-				$('.success').css({'display': 'block',});
-				$('#bar').val(100);
+				$('.box-head').text('Upload Complete!');				
+				//$('#bar').val(100);
 				$('.success').append(data);
 				$('.success').append('<div id="another">Upload Another</div>');
+				$('.loader').fadeOut(300);
+				$('.percentage').fadeOut(350);
+				$('.success').fadeIn(400);
             },
 			complete:function(){
             	$('#container').css({'display':'none'})				
