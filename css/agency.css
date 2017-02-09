@@ -1075,3 +1075,16 @@ display: none;
 #thanks img{
 	width:80%;
 }
+.does_not_exist{
+	background: #1c465a;
+}
+.trash{
+	width: 80%;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 15%;
+    color: #FFF;
+}
+.trash p{
+	font-size: 30px;
+}
